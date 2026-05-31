@@ -1,0 +1,234 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif}
+.report{width:100%;max-width:860px;margin:0 auto;background:var(--color-background-primary);color:var(--color-text-primary)}
+.page{padding:36px 40px 32px;border-bottom:2px solid var(--color-border-tertiary)}
+.report-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px}
+.report-title{flex:1}
+.report-title h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;line-height:1.2;color:var(--color-text-primary)}
+.report-title .sub{font-size:12px;color:var(--color-text-secondary);margin-top:6px;letter-spacing:0.5px;text-transform:uppercase}
+.badge-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.badge{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:500;letter-spacing:0.3px}
+.badge-blue{background:#E6F1FB;color:#185FA5}
+.badge-teal{background:#E1F5EE;color:#0F6E56}
+.badge-amber{background:#FAEEDA;color:#854F0B}
+.tag-block{text-align:right;font-size:11px;color:var(--color-text-secondary)}
+.tag-block .date{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.divider{height:2px;background:linear-gradient(90deg,#185FA5 0%,#0F6E56 50%,#BA7517 100%);margin-bottom:24px;border-radius:2px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.kpi{background:var(--color-background-secondary);border-radius:10px;padding:14px 16px}
+.kpi .val{font-size:22px;font-weight:600;color:var(--color-text-primary);line-height:1}
+.kpi .lbl{font-size:11px;color:var(--color-text-secondary);margin-top:4px;letter-spacing:0.3px;text-transform:uppercase}
+.kpi .delta{font-size:11px;font-weight:500;margin-top:6px}
+.delta-up{color:#0F6E56}
+.delta-dn{color:#A32D2D}
+.two-col{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:20px}
+.chart-card{background:var(--color-background-secondary);border-radius:10px;padding:16px}
+.chart-card h3{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-secondary);margin-bottom:12px;font-weight:500}
+.bar-chart{display:flex;flex-direction:column;gap:6px}
+.bar-row{display:flex;align-items:center;gap:8px;font-size:11px}
+.bar-label{width:58px;text-align:right;color:var(--color-text-secondary);flex-shrink:0;font-size:10px}
+.bar-track{flex:1;background:var(--color-background-primary);border-radius:3px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:500;color:#fff;white-space:nowrap}
+.bar-val{color:var(--color-text-secondary);font-size:10px;width:34px;flex-shrink:0}
+.donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
+.legend-row{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:4px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.section-label{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--color-text-secondary);font-weight:500;margin-bottom:10px}
+.insight-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.insight-box{border-left:3px solid;padding:10px 12px;border-radius:0 8px 8px 0;background:var(--color-background-secondary)}
+.insight-box.blue{border-color:#185FA5}
+.insight-box.teal{border-color:#0F6E56}
+.insight-box.amber{border-color:#BA7517}
+.insight-box .ins-title{font-size:11px;font-weight:600;color:var(--color-text-primary);margin-bottom:3px}
+.insight-box .ins-text{font-size:10px;color:var(--color-text-secondary);line-height:1.4}
+.heatmap-grid{display:grid;grid-template-columns:40px repeat(24,1fr);gap:2px;font-size:9px}
+.hm-label{color:var(--color-text-secondary);text-align:right;padding-right:4px;display:flex;align-items:center;justify-content:flex-end}
+.hm-cell{border-radius:3px;height:18px}
+.hm-header{color:var(--color-text-secondary);text-align:center}
+.full-card{background:var(--color-background-secondary);border-radius:10px;padding:16px;margin-bottom:20px}
+.scatter-wrap{position:relative;width:100%;height:180px}
+.footer-strip{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary);font-size:10px;color:var(--color-text-secondary)}
+</style>
+
+<div class="report">
+<div class="page">
+  <div class="report-header">
+    <div class="report-title">
+      <h1>Rideshare Market Intelligence<br>Boston Metro Region</h1>
+      <div class="sub">Uber &amp; Lyft Competitive Pricing Analysis · 5,000 Ride Sample</div>
+      <div class="badge-row">
+        <span class="badge badge-blue">Kaggle Dataset</span>
+        <span class="badge badge-teal">End-to-End Analysis</span>
+        <span class="badge badge-amber">Dynamic Pricing Focus</span>
+      </div>
+    </div>
+    <div class="tag-block">
+      <div class="date">May 2026</div>
+      <div style="margin-top:4px">Harshith · Data Analyst</div>
+      <div style="margin-top:2px">Page 1 of 2</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="val">5,000</div>
+      <div class="lbl">Total Rides</div>
+      <div class="delta delta-up">Nov – Dec Dataset</div>
+    </div>
+    <div class="kpi">
+      <div class="val">$16.24</div>
+      <div class="lbl">Avg Fare</div>
+      <div class="delta delta-up">↑ $0.74 over Lyft avg</div>
+    </div>
+    <div class="kpi">
+      <div class="val">2.00×</div>
+      <div class="lbl">Peak Surge</div>
+      <div class="delta delta-dn">↑ 68% vs off-peak</div>
+    </div>
+    <div class="kpi">
+      <div class="val">0.785</div>
+      <div class="lbl">Price Corr.</div>
+      <div class="delta delta-up">Distance r = 0.785</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>Average Fare by Service Tier</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">Black SUV</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#185FA5">$24.09</div></div></div>
+        <div class="bar-row"><div class="bar-label">Lux Black XL</div><div class="bar-track"><div class="bar-fill" style="width:98%;background:#185FA5">$23.70</div></div></div>
+        <div class="bar-row"><div class="bar-label">Black</div><div class="bar-track"><div class="bar-fill" style="width:84%;background:#378ADD">$20.16</div></div></div>
+        <div class="bar-row"><div class="bar-label">Lux Black</div><div class="bar-track"><div class="bar-fill" style="width:82%;background:#378ADD">$19.71</div></div></div>
+        <div class="bar-row"><div class="bar-label">UberXL</div><div class="bar-track"><div class="bar-fill" style="width:69%;background:#85B7EB">$16.56</div></div></div>
+        <div class="bar-row"><div class="bar-label">Lyft XL</div><div class="bar-track"><div class="bar-fill" style="width:69%;background:#85B7EB">$16.56</div></div></div>
+        <div class="bar-row"><div class="bar-label">Lux</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#85B7EB">$16.44</div></div></div>
+        <div class="bar-row"><div class="bar-label">UberX</div><div class="bar-track"><div class="bar-fill" style="width:57%;background:#B5D4F4;color:#185FA5">$13.66</div></div></div>
+        <div class="bar-row"><div class="bar-label">Lyft</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#B5D4F4;color:#185FA5">$13.53</div></div></div>
+        <div class="bar-row"><div class="bar-label">WAV</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#E6F1FB;color:#185FA5">$12.60</div></div></div>
+      </div>
+    </div>
+    <div class="chart-card donut-wrap">
+      <h3 style="text-align:center">Platform Share</h3>
+      <canvas id="donutChart" role="img" aria-label="Pie chart: Uber 52%, Lyft 48%">Uber 52%, Lyft 48%</canvas>
+      <div style="margin-top:12px">
+        <div class="legend-row"><div class="legend-dot" style="background:#185FA5"></div><span style="color:var(--color-text-primary)">Uber</span><span style="margin-left:auto;font-weight:500;color:var(--color-text-primary)">52%</span></div>
+        <div class="legend-row"><div class="legend-dot" style="background:#E24B4A"></div><span style="color:var(--color-text-primary)">Lyft</span><span style="margin-left:auto;font-weight:500;color:var(--color-text-primary)">48%</span></div>
+        <div class="legend-row" style="margin-top:10px;border-top:0.5px solid var(--color-border-tertiary);padding-top:8px;flex-direction:column;align-items:flex-start;gap:2px">
+          <div style="font-size:10px;color:var(--color-text-secondary)">Uber avg fare</div>
+          <div style="font-size:14px;font-weight:600;color:#185FA5">$16.61</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:4px">Lyft avg fare</div>
+          <div style="font-size:14px;font-weight:600;color:#E24B4A">$15.87</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-card">
+    <h3 class="section-label">Surge Multiplier Heatmap — Hour of Day vs Surge Level</h3>
+    <div style="position:relative;width:100%;height:200px">
+      <canvas id="heatmapChart" role="img" aria-label="Heatmap showing surge multiplier by hour: peaks during 7-9 AM and 5-8 PM">Peak surge occurs during 7-9 AM and 5-8 PM rush hours.</canvas>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:8px;font-size:10px;color:var(--color-text-secondary);align-items:center">
+      <span>Low surge</span>
+      <div style="display:flex;gap:2px">
+        <div style="width:14px;height:10px;border-radius:2px;background:#E6F1FB"></div>
+        <div style="width:14px;height:10px;border-radius:2px;background:#B5D4F4"></div>
+        <div style="width:14px;height:10px;border-radius:2px;background:#378ADD"></div>
+        <div style="width:14px;height:10px;border-radius:2px;background:#185FA5"></div>
+        <div style="width:14px;height:10px;border-radius:2px;background:#0C447C"></div>
+      </div>
+      <span>High surge</span>
+    </div>
+  </div>
+
+  <div class="insight-row">
+    <div class="insight-box blue">
+      <div class="ins-title">Peak Hours Premium</div>
+      <div class="ins-text">AM (7–9) &amp; PM (17–20) peaks hit 2.00× surge — 68% above off-peak 1.19×. Riders save ~$6 by shifting 1 hour.</div>
+    </div>
+    <div class="insight-box teal">
+      <div class="ins-title">Tier Pricing Gap</div>
+      <div class="ins-text">Premium Black SUV costs 58% more than standard UberX/Lyft. Strong distance–price correlation (r=0.785).</div>
+    </div>
+    <div class="insight-box amber">
+      <div class="ins-title">Weather Impact</div>
+      <div class="ins-text">Snow conditions raise avg fare to $17.35 (+9% over Sunny $15.91). Demand-driven pricing spikes in adverse weather.</div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <span>Source: Kaggle — Uber &amp; Lyft Cab Prices (Boston) | n = 5,000 rides</span>
+    <span>Analyst: Harshith · MSc Data Science, UEAS Berlin</span>
+    <span>Confidential · Page 1/2</span>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('donutChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Uber','Lyft'],
+    datasets: [{
+      data: [52, 48],
+      backgroundColor: ['#185FA5','#E24B4A'],
+      borderWidth: 2,
+      borderColor: 'transparent',
+      hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '68%',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } } }
+  }
+});
+
+const surgeByHour = [1.12,1.10,1.11,1.10,1.12,1.13,1.95,2.02,1.98,1.25,1.18,1.15,1.14,1.18,1.22,1.28,1.40,1.98,2.01,2.05,1.95,1.55,1.38,1.25];
+const labels = Array.from({length:24},(_,i)=>i+':00');
+const bgColors = surgeByHour.map(v => {
+  if(v < 1.2) return '#E6F1FB';
+  if(v < 1.4) return '#B5D4F4';
+  if(v < 1.6) return '#378ADD';
+  if(v < 1.9) return '#185FA5';
+  return '#0C447C';
+});
+new Chart(document.getElementById('heatmapChart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [{
+      label: 'Surge Multiplier',
+      data: surgeByHour,
+      backgroundColor: bgColors,
+      borderRadius: 3,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => 'Surge: ' + ctx.raw.toFixed(2) + '×' } }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 12 },
+        grid: { display: false }
+      },
+      y: {
+        min: 1.0, max: 2.2,
+        ticks: { font: { size: 9 }, callback: v => v.toFixed(1) + '×' },
+        grid: { color: 'rgba(128,128,128,0.1)' }
+      }
+    }
+  }
+});
+</script>
