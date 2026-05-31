@@ -3,11 +3,6 @@
 > End-to-end data analysis of **5,000 Uber & Lyft rides** sourced from Kaggle.  
 > Built to demonstrate real-world data analyst skills: EDA, statistical analysis, dynamic pricing insights, and data storytelling.
 
----
-
-## 📊 Live Report
-
-🔗 **[View Interactive Report](https://srisairajaharshithvellanki3-droid.github.io/rideshare-market-analysis/)**
 
 ---
 
